@@ -1,0 +1,61 @@
+<form class="container" [formGroup]="demoForm" (ngSubmit)="onSubmit(demoForm.value)"
+	style="display: flex; flex-direction: column;">
+
+
+	<app-generic-input class="input-margin" [formGroup]="demoForm" controlName="demoStringInput"     label="Input as composition" required
+		placeholder='provide value' hint='Everything is working, except for submit'>
+	</app-generic-input>
+	<app-cva-input formControlName="demoCVAInput" class="input-margin"    label="Input as ControlValueAccessor" required
+		placeholder='provide value' hint='validation not working at all'>
+	</app-cva-input>
+
+
+ <mat-form-field  class="input-margin" >
+   
+    <mat-label>Inline input</mat-label>
+    <input matInput type="text" formControlName="demoStringInline" placeholder="placeholder" required >
+
+     <mat-hint>
+      desired functionality, but in the component 
+    </mat-hint>
+
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('required')">
+      <span class="mat-caption">
+        <strong>REQUIRED</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('maxlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-LONG</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('minlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-SHORT</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('max')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MAXIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('min')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MINIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf="demoForm.controls.demoStringInline.hasError('email')">
+      <span class="mat-caption">
+        <strong>VALIDATION.IS-EMAIL</strong>
+      </span>
+    </mat-error>
+ </mat-form-field>
+
+
+	<div style="margin-top:20px">
+		<button type="submit">Submit</button>
+	</div>
+  <div style="margin-top:10px">
+		<button (click)="updateValidation()">Update Validation - Trick</button>
+	</div>
+</form>

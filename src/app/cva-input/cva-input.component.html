@@ -1,0 +1,52 @@
+<mat-form-field style="width:100%">
+    <mat-label>{{label}}</mat-label>
+  <!-- 
+    IMPORTANT!:
+    When I try to add [formControl]="ngControl" i get the error:
+    Cannot set property validator of [object Object] which has only a getter -->
+    <input 
+       
+        [type]="type" 
+        #myInput 
+        matInput
+        
+        (blur)="onTouched()" 
+        (input)="onChange($event.target.value)" 
+        [disabled]="disabled" 
+        [placeholder]="placeholder">
+    
+    <mat-hint> 
+      {{hint}}
+    </mat-hint>
+
+    <mat-error *ngIf=" ngControl.hasError('required')">
+      <span class="mat-caption">
+        <strong>VALIDATION.REQUIRED</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" ngControl.hasError('maxlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-LONG</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" ngControl.hasError('minlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-SHORT</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" ngControl.hasError('max')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MAXIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" ngControl.hasError('min')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MINIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" ngControl.hasError('email')">
+      <span class="mat-caption">
+        <strong>VALIDATION.IS-EMAIL</strong>
+      </span>
+    </mat-error>
+  </mat-form-field>

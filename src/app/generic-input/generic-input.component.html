@@ -1,0 +1,41 @@
+
+ <mat-form-field style="width: 100%">
+   
+    <mat-label>{{label}}</mat-label>
+    <input matInput [type]="type" [formControl]="formControl" [placeholder]="placeholder" [required]="required" >
+
+     <mat-hint>
+      {{hint}}
+    </mat-hint>
+
+    <mat-error *ngIf=" formControl.hasError('required')">
+      <span class="mat-caption">
+        <strong>REQUIRED</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" formControl.hasError('maxlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-LONG'</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" formControl.hasError('minlength')">
+      <span class="mat-caption">
+        <strong>VALIDATION.TOO-SHORT</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" formControl.hasError('max')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MAXIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" formControl.hasError('min')">
+      <span class="mat-caption">
+        <strong>VALIDATION.MINIMUM-VALUE</strong>
+      </span>
+    </mat-error>
+    <mat-error *ngIf=" formControl.hasError('email')">
+      <span class="mat-caption">
+        <strong>VALIDATION.IS-EMAIL</strong>
+      </span>
+    </mat-error>
+ </mat-form-field>
